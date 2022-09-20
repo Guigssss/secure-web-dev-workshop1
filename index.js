@@ -177,6 +177,7 @@ function getFilmingLocationsPerFilm () {
 	return films;
 }
 //console.log(getFilmingLocationsPerFilm())
+
 // 📝 TODO: Count each type of film (Long métrage, Série TV, etc...)
 // 1. Implement the function
 // 2. Log the result
@@ -191,7 +192,7 @@ function countFilmingTypes () {
 	}
 	return films;
 }
-console.log(countFilmingTypes())
+//console.log(countFilmingTypes())
 // 📝 TODO: Sort each type of filming by count, from highest to lowest
 // 1. Implement the function. It should return a sorted array of objects like:
 //    [{type: 'Long métrage', count: 1234}, {...}]
@@ -205,7 +206,7 @@ function sortedCountFilmingTypes () {
 	result.reverse();
 	return result;
 }
-console.log(sortedCountFilmingTypes())
+//console.log(sortedCountFilmingTypes())
 /**
  * This arrow functions takes a duration in milliseconds and returns a
  * human-readable string of the duration
@@ -217,7 +218,21 @@ const duration = (ms) => `${(ms/(1000*60*60*24)).toFixed(0)} days, ${((ms/(1000*
 // 📝 TODO: Find the filming location with the longest duration
 // 1. Implement the function
 // 2. Log the filming location, and its computed duration
-
+function getLongestDuration() {
+	let longest = 0;
+	let lieu;
+	for(let i of filmingLocations){
+		let time = new Date(i.fields.date_fin) - new Date(i.fields.date_debut);
+		if(time>longest){
+			longest=time;
+			lieu = i.fields.adresse_lieu;
+		}
+	}
+	let result = {};
+	result[lieu]=duration(longest);
+	return result;
+}
+console.log(getLongestDuration())
 // 📝 TODO: Compute the average filming duration
 // 1. Implement the function
 // 2. Log the result
