@@ -236,3 +236,13 @@ console.log(getLongestDuration())
 // 📝 TODO: Compute the average filming duration
 // 1. Implement the function
 // 2. Log the result
+function getAverageFilmDuration(){
+	let average = 0;
+	for(let i of filmingLocations){
+		let time = new Date(i.fields.date_fin)- new Date(i.fields.date_debut);
+		average += time;
+	}
+	average/=filmingLocations.length;
+	return duration(average);
+}
+console.log(getAverageFilmDuration())
